@@ -1,0 +1,45 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Train {
+    public static void main(String[] args) {
+
+        Scanner scanner = new Scanner(System.in);
+        ArrayList<Integer> train = new ArrayList<Integer>();
+        //String test ="1 2 3 4 5 6";
+       Arrays.stream(scanner.nextLine()/*test*/.split(" ")).
+              forEach(e->train.add(Integer.parseInt(e)));
+
+        scanner = new Scanner(System.in);
+int wagonVolume=Integer.parseInt(scanner.nextLine());
+
+
+while (true) {
+    String stringIn = scanner.nextLine();
+    if (stringIn.equals("End")) {
+        for (Integer i:train) {
+            System.out.print(i+" ");
+         }
+        System.out.println();
+        break;
+    }
+    if (stringIn.startsWith("Add")) {
+        Integer n = Integer.parseInt(stringIn.substring(4) );
+       // System.out.println("Adding "+n);
+        train.add(n);
+        continue;
+   }
+    Integer addPassengers = Integer.parseInt(stringIn );
+    for (int i =0; i<train.size() ;i++ ) {
+        if (train.get(i)+addPassengers>wagonVolume) {
+           continue;
+        }
+        else {
+            train.set( i, train.get(i)+addPassengers) ;
+            break;
+        }
+    }
+}
+}
+}
