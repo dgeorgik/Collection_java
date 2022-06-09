@@ -1,0 +1,34 @@
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class Telephone {
+    public static void main(String[] args) {
+         Scanner scanner = new Scanner(System.in);
+        Map<String,String> telNumber = new HashMap<String,String>();
+
+boolean isSearch=false;
+
+while (true) {
+    String stringIn = scanner.nextLine();
+    if (stringIn.equals("search")) {
+        isSearch = true;
+        continue;
+    }
+    if (stringIn.equals("stop")) {
+        break;
+    }
+    if (isSearch) {
+        if (!telNumber.containsKey(stringIn)) {
+            System.out.println("Contact " + stringIn + " does not exist");
+            } else {
+            System.out.println(stringIn+" -> "+telNumber.get(stringIn));
+        }
+    } else { 
+        String[] temp = stringIn.split(" -> ");
+        telNumber.put(temp[0], temp[1]);
+    }
+}
+}
+}
+
