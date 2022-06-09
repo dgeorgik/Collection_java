@@ -1,0 +1,101 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Scanner;
+
+
+    public class List {
+
+        public static void main(String[] args) {
+
+            Scanner scanner = new Scanner(System.in);
+            ArrayList<Integer> spisok = new ArrayList<Integer>();
+
+            Arrays.stream(scanner.nextLine().split(" ")).
+                    forEach(e -> spisok.add(Integer.parseInt(e)));
+
+
+            while (true) {
+                String stringIn = scanner.nextLine();
+
+                if (stringIn.equals("End")) {
+                    for (int i = 0; i < spisok.size(); i++) {
+                        if (i < (spisok.size() - 1)) System.out.print(spisok.get(i) + " ");
+                        else System.out.println(spisok.get(i));
+                    }
+                    System.out.println();
+                    break;
+                }
+
+                if (stringIn.startsWith("Add")) {
+                    Integer n = Integer.parseInt(stringIn.substring(4));
+                    // System.out.println("Adding "+n);
+                    spisok.add(n);
+                    continue;
+                }
+
+
+                if (stringIn.startsWith("Insert")) {
+                    String[] arrayStr = stringIn.split(" ");
+                    Integer position = Integer.parseInt(arrayStr[2]);
+                    Integer digit = Integer.parseInt(arrayStr[1]);
+                    if (position < 0 || position >= (spisok.size() - 1)) {
+                        System.out.println("Invalid index");
+                    } else {
+                        spisok.set(position, digit);
+                    }
+                    continue;
+                }
+
+                if (stringIn.startsWith("Remove")) {
+                    Integer position = Integer.parseInt(stringIn.split(" ")[1]);
+
+                    if (position < 0 || position >= (spisok.size() - 1)) {
+                        System.out.println("Invalid index");
+                    } else {
+                        spisok.remove(position);
+                    }
+                    continue;
+                }
+
+
+                if (stringIn.startsWith("Shift left")) {
+                    String[] arrayStr = stringIn.split(" ");
+
+                    Integer digit = Integer.parseInt(arrayStr[2]);
+                    for (int i = 0; i < digit; i++) {
+                        Integer temp = spisok.get(0);
+                        spisok.remove(0);
+                        spisok.add(temp);
+                    }
+                    continue;
+                }
+
+                if (stringIn.startsWith("Shift right")) {
+                    String[] arrayStr = stringIn.split(" ");
+
+                    Integer digit = Integer.parseInt(arrayStr[2]);
+
+                    while (spisok.size() < digit) {
+                        digit = spisok.size() - digit;
+                        digit = Math.abs(digit);
+                    }
+                    for (int i = spisok.size() - digit-1; i >= 0; i--) {
+
+                        Integer temp = spisok.get(0);
+                        spisok.remove(0);
+                        spisok.add(temp);
+                    }
+                    continue;
+                }
+
+            }
+        }
+
+        static void debugPrintArray ( ArrayList<Integer> spisok ) {
+            for  (int i=0; i< spisok.size();i++){
+                if (i<(spisok.size()-1)) System.out.print(spisok.get(i)+" ");
+                else System.out.println(spisok.get(i));
+            }
+            System.out.println();
+        }
+    }
