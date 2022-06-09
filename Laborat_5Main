@@ -1,0 +1,43 @@
+import java.util.Scanner;
+import java.util.SortedMap;
+import java.util.TreeMap;
+
+public class FoodShop {
+
+    public static void main(String[] args) {
+         Scanner scanner = new Scanner(System.in);
+        SortedMap<String, SortedMap<String, Double>> mapShop = new TreeMap<String, SortedMap<String, Double>>();
+
+while (true) {
+    String stringIn = scanner.nextLine();
+    if (stringIn.equals("Revision")) {
+        mapShop.keySet().forEach(magazinName->{
+            System.out.println(magazinName+"->");
+
+            SortedMap<String, Double> productsInThisMagazin=mapShop.get(magazinName);
+            productsInThisMagazin.keySet(). forEach(productName ->{
+               Double d_price= productsInThisMagazin.get(productName);
+                System.out.println("Product: "+productName+", Price: "+String.format("%.1f",d_price));
+            });
+        });
+
+        break;
+    }
+    else {
+        String [] line=stringIn.split(", ");
+        String magaz=line[0];
+        String product=line[1];
+        String price=line[2];
+        Double d_price=Double.parseDouble(price);
+
+        if (!mapShop.containsKey(magaz)) {
+            SortedMap<String, Double> temp=  new TreeMap<String,  Double> ();
+            mapShop.put(magaz,temp);
+        }
+        SortedMap<String, Double> productInMagazin= mapShop.get(magaz);
+        productInMagazin.put(product,d_price);
+    }
+
+}
+}
+}
