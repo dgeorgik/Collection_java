@@ -1,0 +1,29 @@
+Класс Product
+
+public class Product implements Comparable{
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    String name;
+    double price;
+
+    @Override
+    public int compareTo(Object o) {
+        return ((Product) o).getName().compareTo(name);
+    }
+}
+
