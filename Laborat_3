@@ -1,0 +1,38 @@
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Set;
+
+public class Parking {
+ 
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Set <String> setA = new HashSet<String> ();
+
+while (true) {
+    String stringIn = scanner.nextLine();
+
+    if (stringIn.equals("END")) {
+        if (setA.isEmpty()) {
+            System.out.println("Parking Lot is Empty");
+    }
+
+    else {
+        for (String i : setA) {
+            System.out.print(i + " ");
+        }
+            System.out.println();
+    }
+     break;
+    }
+    String [] array=stringIn.split(", ");
+    if (array[0].equals("IN") ) {
+        setA.add(array[1]);
+        continue;
+   }
+    if (array[0].equals("OUT") ) {
+        setA.remove(array[1]);
+        continue;
+    }
+    }
+}
+}
